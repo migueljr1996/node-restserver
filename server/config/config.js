@@ -16,3 +16,20 @@ if (process.env.NODE_ENV === 'dev') {
     urlDB = process.env.MONGO_URL;
 }
 process.env.URLDB = urlDB
+
+//***************
+// Vencimiento del token
+//******************* */
+// 60 segundos
+// 60 minutos
+// 24 horas
+// 30 dias
+
+process.env.Caducidad_Token = 60 * 60 * 24 * 30;
+
+
+//***************
+// Seed (semilla de autentificacion)
+//******************* */
+
+process.env.SEED = process.env.SEED || 'secret-DESARROLLO';
