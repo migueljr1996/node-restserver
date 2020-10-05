@@ -2,7 +2,7 @@ require("./config/config")
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose');
-
+const path = require('path')
 var bodyParser = require('body-parser')
 
 // parse application/x-www-form-urlencoded
@@ -23,3 +23,6 @@ mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useCreateIndex: tru
 app.listen(process.env.PORT, () => {
     console.log(`PUERTO ${process.env.PORT}`)
 })
+
+//habilitar carpeta public
+app.use(express.static(path.resolve(__dirname, '../public')))
