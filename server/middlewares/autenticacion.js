@@ -21,6 +21,27 @@ let verificarToken = (req, res, next) => {
 
 }
 
+
+let verificarTokenImagen = (req, res, next) => {
+    //Next es una funcion para que el programa continue cuando termine esta funcion osea si no se llama la ejecucion del programa termina aqui y no continua con lo demas que este en la otra funcion
+    let token = req.query.token;
+
+    jwt.verify(token, process.env.SEED, (err, decoded) => {
+        if (err) {
+            return res.status(401).json({
+                ok: false,
+                err: {
+                    messagge: 'Token no valido'
+                }
+            })
+        }
+        req.usuario = decoded.usuario;
+        next();
+    })
+
+}
+
+
 //***************
 // Verificar Rol de admin  
 //******************* */
@@ -41,5 +62,6 @@ let verificarRol = (req, res, next) => {
 
 module.exports = {
     verificarToken,
-    verificarRol
+    verificarRol,
+    verificarTokenImagen
 }
