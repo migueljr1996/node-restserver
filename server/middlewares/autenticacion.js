@@ -27,12 +27,13 @@ let verificarToken = (req, res, next) => {
 let verificarRol = (req, res, next) => {
     let usuario = req.usuario;
     if (usuario.role === 'ADMIN_ROLE') {
+
         next();
     } else {
         res.json({
             ok: false,
             err: {
-                messagge: ' El usuario no tiene permisos para añadir'
+                messagge: ' El usuario no tiene permisos'
             }
         })
     }
